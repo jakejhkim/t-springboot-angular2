@@ -46,8 +46,10 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
     compile('org.thymeleaf:thymeleaf:3.0.1.RELEASE')
     compile('org.thymeleaf:thymeleaf-spring4:3.0.1.RELEASE')
+    compile('org.modelmapper:modelmapper:0.7.6')
 
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')

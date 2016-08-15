@@ -1,11 +1,13 @@
 'use strict';
 
-import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
+import {Component} from "@angular/core";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 
 @Component({
-    selector: 'spring-boot-angular2',
+    selector: 'index',
     template: '<router-outlet></router-outlet>',
     directives: [ROUTER_DIRECTIVES]
 })
-export class AppComponent {}
+export class AppComponent {
+
+}

@@ -1,16 +1,17 @@
-'use strict';
+/**
+ * Created by jake on 2016. 8. 15..
+ */
 
 import {Injectable, Inject} from '@angular/core';
 import {Http, Response} from '@angular/http';
-import 'rxjs/add/operator/map';
 
 @Injectable()
-export class HelloService {
-
+export class PostService {
     constructor(@Inject(Http) private http: Http) {}
 
-    getTest() {
-        return this.http.get('/test/get/json')
+    private postsUrl = "/posts"
+    getPosts() {
+        return this.http.get(this.postsUrl)
             .map((res:Response) => res.json());
     }
 }

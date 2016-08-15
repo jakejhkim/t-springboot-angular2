@@ -12,8 +12,8 @@ buildscript {
 
 plugins {
     //https://plugins.gradle.org/plugin/com.moowork.node
-    id "com.moowork.node" version "0.13"
-    id "com.moowork.gulp" version "0.13"
+    id "com.moowork.node" version "0.12"
+    id "com.moowork.gulp" version "0.12"
 }
 
 apply plugin: 'java'
@@ -65,7 +65,7 @@ sourceSets {
 
 // configure gradle-node-plugin
 node {
-    version = '6.3.0'
+    version = '6.3.1'
     npmVersion = '3.10.5'
     download = true
     workDir = file("${project.projectDir}/src/main/web/node")
@@ -112,3 +112,4 @@ npmInstall.finalizedBy(gulp_build)
 
 // run npmClean before clean
 clean.dependsOn(npmClean)
+gulp_build.dependsOn 'installGulp'

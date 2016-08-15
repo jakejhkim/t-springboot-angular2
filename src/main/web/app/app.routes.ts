@@ -1,15 +1,12 @@
-import {provideRouter, RouterConfig} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-import {HelloComponent} from './hello/hello.component';
-import {Bootstrap4Component} from './bootstrap4/bootstrap4.component';
 import {HomeComponent} from './home/home.component';
+import {PostComponent} from './post/post.component';
 
-const routes: RouterConfig = [
-    {path: '', component: HomeComponent},
-    {path: 'bootstrap4', component: Bootstrap4Component},
-    {path: 'hello', component: HelloComponent}
+const appRoutes: Routes = [
+    { path: '', component: HomeComponent },
+    { path: 'posts', component: PostComponent }
 ];
-
-export const appRouterProviders = [
-    provideRouter(routes)
+export const appRouterProviders: any[] = [
 ];
+export const routing = RouterModule.forRoot(appRoutes) ;

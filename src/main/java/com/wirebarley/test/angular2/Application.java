@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootAngular2TestApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootAngular2TestApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }

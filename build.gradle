@@ -46,6 +46,9 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.thymeleaf:thymeleaf:3.0.1.RELEASE')
+    compile('org.thymeleaf:thymeleaf-spring4:3.0.1.RELEASE')
+
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
@@ -67,7 +70,7 @@ node {
     nodeModulesDir = file("${project.projectDir}/src/main/web")
 }
 
-// configure gradle-grunt-plugin
+// configure gradle-gulp-plugin
 gulp {
     workDir = file("${project.projectDir}/src/main/web");
     colors = true

@@ -29,6 +29,6 @@ public class PostData {
     @NoArgsConstructor
     @Builder
     public static class PostListResData {
-        List<PostResData> list;
+        List<PostResData> posts;
     }
 }

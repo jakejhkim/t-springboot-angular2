@@ -5,6 +5,8 @@ import com.wirebarley.test.angular2.domain.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +17,14 @@ public class PostServiceImpl implements PostService<Post> {
     @Autowired
     PostRepository repository;
 
+    @PostConstruct
+    public void setUp() {
+        List<Post> posts = new ArrayList<>();
+        for(int i = 0; i < 10; i++) {
+            posts.add(Post.builder().title("Post: " + i).content("Content: " + i).build());
+        }
+        repository.save(posts);
+    }
 
     @Override
     public Post save(Post post) {

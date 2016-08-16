@@ -1,4 +1,16 @@
 <h1>Post</h1>
 <div>
+    <a [routerLink]="['']" class="btn btn-primary">Root Page</a>
+    <button class="btn btn-primary">Add Post</button>
     <div>Posts</div>
+    <add-post></add-post>
+    <posts></posts>
+    <ul>
+        <li *ngFor="let post of posts" >
+            <span (click)="selectPost(post)">{{post.title}} / {{post.content}}</span>
+            <span (click)="deletePost(post)">
+                <i class="fa fa-remove"></i>
+            </span>
+        </li>
+    </ul>
 </div>

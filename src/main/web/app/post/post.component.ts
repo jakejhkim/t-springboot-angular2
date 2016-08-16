@@ -2,12 +2,12 @@
  * Created by jake on 2016. 8. 15..
  */
 
-import {Component, OnInit} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-import {ROUTER_DIRECTIVES} from '@angular/router';
-import {PostService} from './post.service';
-import {Observable} from "rxjs";
+import {Component, OnInit} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
+import {ROUTER_DIRECTIVES} from "@angular/router";
+import {PostService} from "./post.service";
 import {HTTP_PROVIDERS} from "@angular/http";
+import {Post} from "./post"; //<router-outlet></router-outlet> 아래에 셀렉터를 넣어주는 듯..
 
 @Component({
     selector: 'post',
@@ -17,21 +17,34 @@ import {HTTP_PROVIDERS} from "@angular/http";
 })
 export class PostComponent implements OnInit {
 
-    posts: Observable<Post[]>;
+    private posts: Post[];
+    private subscription;
 
-    constructor(private postService: PostService) {}
+    constructor(private postService: PostService) {
+    }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.getPosts();
     }
 
     getPosts() {
-        this.posts = this.postService.getPosts();
+        this.subscription = this.postService.getPosts()
+            .subscribe(
+            (data) => {
+                console.log("getPosts", data.json());
+                this.posts = data.json().posts;
+            },
+            (err) => console.log(err),
+            () => console.log('post service test complete')
+        );
     }
-}
 
-export class Post {
-    id: number;
-    title: string;
-    content: string;
+    selectPost(post) {
+        console.log("select post", post);
+    }
+
+    deletePost(post) {
+        this.postService.deletePost(post);
+        this.posts.slice(post);
+    }
 }

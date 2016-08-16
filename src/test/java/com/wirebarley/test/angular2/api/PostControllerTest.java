@@ -37,7 +37,7 @@ public class PostControllerTest extends BaseMockWebTest {
 
         MvcResult result = this.mockMvc
                 .perform(
-                        post("/posts")
+                        post("/api/posts")
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content(convertToJson(targetPost))
                 )
@@ -55,12 +55,12 @@ public class PostControllerTest extends BaseMockWebTest {
         generatePost(10);
 
         MvcResult result = this.mockMvc
-                .perform(get("/posts").contentType(MediaType.APPLICATION_JSON_UTF8))
+                .perform(get("/api/posts").contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andReturn();
 
         PostListResData res = convertFromJson(result, PostListResData.class);
-        assertThat(res.getList().size()).isEqualTo(10);
+        assertThat(res.getPosts().size()).isEqualTo(20);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class PostControllerTest extends BaseMockWebTest {
         Post targetPost = posts.get(new Random().nextInt(posts.size()));
 
         MvcResult result = this.mockMvc
-                .perform(get("/posts/{post}", targetPost.getId()))
+                .perform(get("/api/posts/{post}", targetPost.getId()))
                 .andExpect(status().isOk()).andReturn();
 
         PostResData res = convertFromJson(result, PostResData.class);
@@ -80,7 +80,7 @@ public class PostControllerTest extends BaseMockWebTest {
 
     @Test
     public void 없는대상을_가져오려고할때() throws Exception {
-        this.mockMvc.perform(get("/posts/{post}", Long.MAX_VALUE)).andExpect(status().isBadRequest());
+        this.mockMvc.perform(get("/api/posts/{post}", Long.MAX_VALUE)).andExpect(status().isBadRequest());
     }
 
     @Test
@@ -93,7 +93,7 @@ public class PostControllerTest extends BaseMockWebTest {
         String content = "Modify content";
         PostData postData = PostData.builder().title(title).content(content).build();
         MvcResult result = this.mockMvc.perform(
-                put("/posts/{post}", targetPost.getId())
+                put("/api/posts/{post}", targetPost.getId())
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content(convertToJson(postData)))
                 .andExpect(status().isOk())
@@ -110,14 +110,14 @@ public class PostControllerTest extends BaseMockWebTest {
         List<Post> posts = repository.findAll();
         Post targetPost = posts.get(new Random().nextInt(posts.size()));
 
-        this.mockMvc.perform(delete("/posts/{post}", targetPost.getId())).andExpect(status().isNoContent());
+        this.mockMvc.perform(delete("/api/posts/{post}", targetPost.getId())).andExpect(status().isNoContent());
 
         assertThat(repository.findOne(targetPost.getId())).isNull();
     }
 
     @Test
     public void 없는대상을_지우려고할때() throws Exception {
-        this.mockMvc.perform(delete("/posts/{post}", Long.MAX_VALUE)).andExpect(status().isBadRequest());
+        this.mockMvc.perform(delete("/api/posts/{post}", Long.MAX_VALUE)).andExpect(status().isBadRequest());
     }
 
     private void generatePost(int size) {

@@ -1,0 +1,22 @@
+<div>
+    <form method="post" #f="ngForm">
+        <div class="form-group">
+            <label class="form-control" for="title">Title</label>
+            <div>
+                <input type="text" id="title" name="title" [(ngModel)]="post.title"
+                       #title="ngForm" required/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control" for="content">Content</label>
+            <div>
+                <input type="text" id="content" name="content"  [(ngModel)]="post.content" #contet="ngForm"/>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn" (click)="onSubmit()">Submit</button>
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+    </form>
+    {{f.value}}
+</div>

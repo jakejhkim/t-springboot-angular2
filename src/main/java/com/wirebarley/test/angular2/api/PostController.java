@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/api/posts")
 public class PostController {
     @Autowired
     PostService postService;
@@ -34,7 +34,7 @@ public class PostController {
         List<Post> posts = postService.findAll();
         List<PostResData> postResDataList = posts.stream()
                 .map(post -> modelMapper.map(post, PostResData.class)).collect(Collectors.toList());
-        PostListResData res = PostListResData.builder().list(postResDataList).build();
+        PostListResData res = PostListResData.builder().posts(postResDataList).build();
         return ResponseEntity.ok(res);
     }
 

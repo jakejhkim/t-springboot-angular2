@@ -7,12 +7,25 @@ import {routing, appRouterProviders} from "./app.routes";
 import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component";
 import {PostComponent} from "./post/post.component";
+import {Logger} from "./logger.service";
+import {PostAddComponent} from "./post/post-add.component";
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, PostComponent],
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule, routing],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing
+    ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        PostComponent,
+        PostAddComponent
+    ],
     providers: [
-        appRouterProviders
+        appRouterProviders,
+        Logger
     ],
     bootstrap: [AppComponent]
 })

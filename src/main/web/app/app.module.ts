@@ -8,7 +8,6 @@ import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component";
 import {PostComponent} from "./post/post.component";
 import {Logger} from "./logger.service";
-import {PostAddComponent} from "./post/post-add.component";
 
 @NgModule({
     imports: [
@@ -20,8 +19,7 @@ import {PostAddComponent} from "./post/post-add.component";
     declarations: [
         AppComponent,
         HomeComponent,
-        PostComponent,
-        PostAddComponent
+        PostComponent
     ],
     providers: [
         appRouterProviders,
